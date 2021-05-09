@@ -14,13 +14,19 @@ import com.raza.marketapp.model.*;
 
 @RestController
 @RequestMapping("api")
-public class SaleDataController {
+public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String login(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
-          
+          User loginuser = (User)jdbcTemplate.queryForObject("select * from users where username = '" + + username + "' and password = '" + password + "';");
+	  if (loginuser == null) return "Wrong username or password";
+	  return "Success!";
 	}
 
-	
+        @Bean
+ 	public JdbcTemplate jdbcTemplate(DataSource dataSource)
+	{
+   	 	return new JdbcTemplate(dataSource);
+	}
 }
