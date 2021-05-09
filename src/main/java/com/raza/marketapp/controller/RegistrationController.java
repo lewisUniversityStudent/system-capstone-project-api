@@ -14,7 +14,7 @@ import com.raza.marketapp.model.*;
 
 @RestController
 @RequestMapping("api")
-public class LoginController {
+public class RegistrationController {
 
         public static bool existsUser(String username)
 	{
